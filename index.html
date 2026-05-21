@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAM — Breadcrumbs Tablet Experience</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>SAM — The Studio · Jacob Lawrence</title>
+<style>
+  @font-face { font-family:"Self Modern"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/SelfModern.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face { font-family:"Cosmica"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/Cosmica-Book.otf") format("opentype"); font-weight:400; font-style:normal; }
+  @font-face { font-family:"Cosmica"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/Cosmica-Medium.otf") format("opentype"); font-weight:500; font-style:normal; }
+  @font-face { font-family:"Cosmica"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/Cosmica-Semibold.otf") format("opentype"); font-weight:600; font-style:normal; }
+  @font-face { font-family:"Cosmica"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/Cosmica-Bold.otf") format("opentype"); font-weight:700; font-style:normal; }
+  @font-face { font-family:"Cosmica"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/Cosmica-Heavy.otf") format("opentype"); font-weight:800; font-style:normal; }
+  @font-face { font-family:"Cosmica Mono"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/CosmicaMono-Book.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face { font-family:"Cosmica Mono"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/CosmicaMono-Medium.ttf") format("truetype"); font-weight:500; font-style:normal; }
+  @font-face { font-family:"Cosmica Mono"; src:url("file:///Users/kinjalvora/Downloads/SAM Game Design System/fonts/CosmicaMono-Bold.ttf") format("truetype"); font-weight:700; font-style:normal; }
+</style>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -17,13 +25,12 @@
 
   html, body {
     width: 100%; height: 100%;
-    background: #e8e6e1;
+    background: #1a1a1a;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Cosmica', system-ui, sans-serif;
     overflow: hidden;
   }
 
-  /* Tablet shell */
   .tablet-shell {
     width: 768px;
     height: 1024px;
@@ -172,7 +179,6 @@ function TweaksPanel({ title = 'Tweaks', children }) {
 }
 
 function TweakSection({ label }) { return <div className="twk-sect">{label}</div>; }
-
 function TweakRow({ label, children }) {
   return (
     <div className="twk-row">
@@ -181,16 +187,6 @@ function TweakRow({ label, children }) {
     </div>
   );
 }
-
-function TweakText({ label, value, placeholder, onChange }) {
-  return (
-    <TweakRow label={label}>
-      <input className="twk-field" type="text" value={value} placeholder={placeholder}
-             onChange={e => onChange(e.target.value)} />
-    </TweakRow>
-  );
-}
-
 function TweakSelect({ label, value, options, onChange }) {
   return (
     <TweakRow label={label}>
@@ -205,34 +201,74 @@ function TweakSelect({ label, value, options, onChange }) {
   );
 }
 
-Object.assign(window, { useTweaks, TweaksPanel, TweakSection, TweakText, TweakSelect });
+Object.assign(window, { useTweaks, TweaksPanel, TweakSection, TweakSelect });
 </script>
 
 <script type="text/babel">
 
 /* ─────────────────────────────────────────
-   DESIGN TOKENS — museum-web minimalism
-   bold sans-serif, b&w primary, lowercase voice,
-   pill CTAs, thin rules, restrained emoji accents
+   DESIGN TOKENS
 ───────────────────────────────────────── */
 const T = {
-  paper:        '#ffffff',
-  paperDim:     '#f5f3ee',
-  paperDeep:    '#ebe8e1',
-  ink:          '#0a0a0a',
-  inkSoft:      '#2c2c2c',
-  inkMid:       '#6b6b6b',
-  inkFaint:     '#a8a6a0',
-  rule:         '#dad7d0',
-
-  /* Single bright accent — used sparingly */
-  highlight:    '#ffe14d',  /* sticky-note yellow */
-  highlightDeep:'#ffd000',
+  paper:        '#323131',
+  paperDim:     '#3D3C3C',
+  paperDeep:    '#2A2929',
+  ink:          '#F4EFE2',
+  inkSoft:      '#C9C3B3',
+  inkMid:       '#8C887D',
+  inkFaint:     '#5A5854',
+  rule:         '#8C887D',
+  highlight:    '#C8341A',
+  highlightDeep:'#9E2410',
 };
 
-const SANS = "'Manrope', sans-serif";
-const SERIF = "'Source Serif 4', Georgia, serif";
-const MONO = "'Roboto Mono', monospace";
+const SANS  = "'Cosmica', system-ui, sans-serif";
+const SERIF = "'Self Modern', Georgia, serif";
+const MONO  = "'Cosmica Mono', 'JetBrains Mono', ui-monospace, monospace";
+
+/* ─────────────────────────────────────────
+   GAME DATA
+───────────────────────────────────────── */
+
+/* Riddles — target coords are % of the painting container (x from left, y from top).
+   Adjust these once you know the painting's actual layout. */
+const RIDDLES = [
+  {
+    index: '01',
+    question: "I don't match the room I'm seen through. I'm where the artist grew up.",
+    hint: "Look for a window — something outside doesn't quite match the studio's interior.",
+    target: { x: 50, y: 25 },
+    revealLabel: 'The city view through the window',
+  },
+  {
+    index: '02',
+    question: "I am a reference to the artist's other works for art.",
+    hint: "Find the small paintings hanging on the studio wall.",
+    target: { x: 25, y: 25 },
+    revealLabel: 'The Builder Series paintings',
+  },
+];
+
+/* Fun facts — shown after both riddles */
+const FACTS = [
+  {
+    index: '01',
+    fact: 'Jacob Lawrence often linked migration, memory, and place in a single frame. The "out-of-place" city here is intentional — it reflects how different geographies shaped identity at the same time.',
+    zoom: { size: '280%', pos: '72% 22%' },
+  },
+  {
+    index: '02',
+    fact: 'The Builders series focuses on construction and labor, but Lawrence removes excess detail so the structure itself becomes the subject — not the workers or tools.',
+    zoom: { size: '340%', pos: '18% 34%' },
+  },
+  {
+    index: '03',
+    fact: "Lawrence's studio paintings often show multiple layers of making happening at once — artworks, tools, and ideas sharing the same space rather than being separated into \"finished\" and \"in progress.\"",
+    zoom: { size: '200%', pos: '50% 50%' },
+  },
+];
+
+const TEAM_NAMES = ['the main characters'];
 
 /* ─────────────────────────────────────────
    SHARED UTILITIES
@@ -252,83 +288,108 @@ const useScaleToFit = (w, h) => {
   return scale;
 };
 
-/* Wordmark — bold black "sam" lockup (original — not SAM's logo) */
+function SamLogo({ height = 56, inverted = false }) {
+  const [err, setErr] = React.useState(false);
+  const src = inverted ? './sam-logo-inverted.png' : './sam-logo.png';
+  React.useEffect(() => { setErr(false); }, [src]);
+  if (err) return <Wordmark size={Math.round(height * 0.5)} color={inverted ? T.ink : T.paper} />;
+  return (
+    <img src={src} onError={() => setErr(true)}
+      style={{ height, display: 'block', objectFit: 'contain' }} />
+  );
+}
+
 function Wordmark({ size = 26, color = T.ink }) {
   return (
     <div style={{
-      fontFamily: SANS, fontWeight: 800, fontSize: size,
-      letterSpacing: '-0.04em', color, lineHeight: 1,
-      display: 'inline-flex', alignItems: 'baseline', gap: 6,
+      fontFamily: SANS, fontWeight: 700, fontSize: size,
+      letterSpacing: '0.18em', color, lineHeight: 1,
+      display: 'inline-flex', alignItems: 'center', gap: 10,
+      textTransform: 'uppercase',
     }}>
-      <span>sam</span>
+      <span>SAM</span>
       <span style={{
-        width: 6, height: 6, background: color, borderRadius: '50%',
-        display: 'inline-block', alignSelf: 'center', marginBottom: 2,
+        width: 8, height: 8, background: T.highlight, borderRadius: '50%',
+        display: 'inline-block', flexShrink: 0,
       }}/>
     </div>
   );
 }
 
-/* Eyebrow label — tiny lowercase tracked */
-function Eyebrow({ children, color, style = {} }) {
+function TeamBadge({ teamName }) {
   return (
     <div style={{
-      fontFamily: SANS, fontWeight: 600, fontSize: 11,
-      letterSpacing: '0.04em', textTransform: 'lowercase',
-      color: color || T.inkMid, ...style,
-    }}>{children}</div>
+      display: 'flex', alignItems: 'center', gap: 8,
+      border: `2px solid ${T.ink}`,
+      padding: '6px 14px', borderRadius: 999,
+      fontFamily: MONO, fontWeight: 500, fontSize: 11,
+      letterSpacing: '0.06em', textTransform: 'uppercase',
+      color: T.ink,
+    }}>
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: T.highlight }}/>
+      <span>{teamName}</span>
+    </div>
   );
 }
 
-/* Pill CTA — black bg, white text, with optional emoji prefix */
-function PillButton({ onClick, disabled, children, emoji, variant = 'solid', style = {} }) {
-  const base = {
-    fontFamily: SANS, fontWeight: 600, fontSize: 15,
-    letterSpacing: '-0.005em',
-    padding: '20px 28px',
-    borderRadius: 999,
-    border: variant === 'outline' ? `1.5px solid ${T.ink}` : 'none',
-    background: variant === 'outline' ? 'transparent' : T.ink,
-    color: variant === 'outline' ? T.ink : T.paper,
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-    transition: 'transform 0.15s ease, background 0.15s ease',
-    opacity: disabled ? 0.35 : 1,
-    width: '100%',
-    ...style,
-  };
+function ScreenHeader({ teamName }) {
   return (
-    <button onClick={onClick} disabled={disabled} style={base}
-      onMouseEnter={e => { if (!disabled) e.currentTarget.style.transform = 'translateY(-1px)'; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+    <div style={{
+      padding: '20px 40px',
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      borderBottom: `1px solid ${T.rule}`,
+      flexShrink: 0,
+    }}>
+      <SamLogo height={28} inverted />
+      <TeamBadge teamName={teamName} />
+    </div>
+  );
+}
+
+function PillButton({ onClick, disabled, children, variant = 'primary', style = {} }) {
+  const styles = {
+    primary:  { background: T.ink,       color: T.paper,  border: `2px solid ${T.ink}` },
+    secondary:{ background: T.paperDim,  color: T.ink,    border: `2px solid ${T.ink}` },
+    outline:  { background: 'transparent', color: T.ink,  border: `2px solid ${T.ink}` },
+    accent:   { background: T.highlight, color: T.paper,  border: `2px solid ${T.highlight}` },
+  };
+  const v = styles[variant] || styles.primary;
+  return (
+    <button onClick={onClick} disabled={disabled} style={{
+      fontFamily: SANS, fontWeight: 600, fontSize: 16,
+      letterSpacing: '0.01em',
+      padding: '18px 28px',
+      borderRadius: 999,
+      ...v,
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      transition: 'transform 280ms cubic-bezier(0.34,1.56,0.64,1)',
+      opacity: disabled ? 0.4 : 1,
+      width: '100%',
+      ...style,
+    }}
+      onMouseEnter={e => { if (!disabled) e.currentTarget.style.transform = 'scale(1.02)'; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+      onMouseDown={e => { if (!disabled) e.currentTarget.style.transform = 'scale(0.96)'; }}
+      onMouseUp={e => { if (!disabled) e.currentTarget.style.transform = 'scale(1.02)'; }}
     >
-      {emoji && <span style={{ fontSize: 16 }}>{emoji}</span>}
-      <span>{children}</span>
+      {children}
     </button>
   );
 }
 
-/* Thin rule */
-function Rule({ my = 24, color }) {
-  return <div style={{ height: 1, background: color || T.rule, marginTop: my, marginBottom: my, width: '100%' }} />;
-}
-
 /* ─────────────────────────────────────────
    SCREEN 1: IDLE / LABEL
-   Museum placard aesthetic — clean white card,
-   left-aligned, no decorative UI chrome
 ───────────────────────────────────────── */
-function IdleScreen({ onTap, tweaks }) {
+function IdleScreen({ onTap }) {
   const [popped, setPopped] = React.useState(false);
   const [wobble, setWobble] = React.useState(false);
 
-  /* Pop in after a short delay so it feels like it sneaks up */
   React.useEffect(() => {
     const t1 = setTimeout(() => setPopped(true), 900);
     return () => clearTimeout(t1);
   }, []);
 
-  /* Periodic wiggle to keep drawing attention */
   React.useEffect(() => {
     if (!popped) return;
     const loop = setInterval(() => {
@@ -354,140 +415,114 @@ function IdleScreen({ onTap, tweaks }) {
           60%     { transform: rotate(-3deg) scale(1.03); }
           80%     { transform: rotate(2deg) scale(1.01); }
         }
-        @keyframes ripple {
-          0%   { transform: scale(1); opacity: 0.55; }
-          100% { transform: scale(2.6); opacity: 0; }
-        }
         @keyframes float {
           0%,100% { transform: translateY(0px); }
           50%     { transform: translateY(-6px); }
         }
       `}</style>
 
-      <div
-        onClick={onTap}
-        style={{
-          width:'100%', height:'100%',
-          background: '#f8f8f6',
-          display:'flex', flexDirection:'column',
-          color: T.ink, position:'relative',
-          cursor: 'pointer',
-        }}
-      >
-        {/* Label card */}
+      <div onClick={onTap} style={{
+        width: '100%', height: '100%',
+        background: '#ffffff',
+        display: 'flex', flexDirection: 'column',
+        color: T.paper, position: 'relative',
+        cursor: 'pointer',
+      }}>
         <div style={{
           flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '60px 72px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '60px 64px',
         }}>
-          <div style={{ width: '100%', maxWidth: 580 }}>
+          <div style={{ width: '100%' }}>
 
             <div style={{
-              fontFamily: SANS, fontWeight: 700, fontSize: 28,
-              color: T.ink, letterSpacing: '-0.01em',
-              lineHeight: 1.2, marginBottom: 4,
+              fontFamily: SANS, fontWeight: 700, fontSize: 22,
+              color: T.paper, letterSpacing: '0.01em',
+              lineHeight: 1.2, marginBottom: 6,
             }}>
-              {tweaks.artistLabel}
+              Jacob Lawrence (1917–2000)
             </div>
 
             <div style={{
-              fontFamily: SERIF, fontStyle: 'italic', fontWeight: 400,
-              fontSize: 26, color: T.ink, lineHeight: 1.25, marginBottom: 28,
+              fontFamily: SERIF, fontWeight: 400,
+              fontSize: 52, color: T.paper, lineHeight: 0.96,
+              letterSpacing: '-0.015em', marginBottom: 32,
             }}>
-              Women of the Floating World
+              The Studio
             </div>
 
             <div style={{
-              fontFamily: SANS, fontSize: 16, fontWeight: 400,
-              color: T.inkSoft, lineHeight: 1.5, marginBottom: 4,
+              fontFamily: MONO, fontSize: 12, fontWeight: 500,
+              color: T.inkMid, lineHeight: 1.6,
+              letterSpacing: '0.06em', textTransform: 'uppercase',
+              marginBottom: 4,
             }}>
-              c. 1820–1840, ink and color on silk, 14 × 19"
+              1977 · Gouache on paper
+            </div>
+            <div style={{
+              fontFamily: MONO, fontSize: 12, fontWeight: 500,
+              color: T.inkMid, lineHeight: 1.6,
+              letterSpacing: '0.06em', textTransform: 'uppercase',
+              marginBottom: 32,
+            }}>
+              Seattle Art Museum Collection
             </div>
 
-            <div style={{
-              fontFamily: SANS, fontSize: 16, fontWeight: 400,
-              color: T.inkSoft, lineHeight: 1.5, marginBottom: 28,
-            }}>
-              Seattle Art Museum — Gift of the Founders Society
-            </div>
+            <div style={{ height: 1, background: T.inkMid, marginBottom: 28, opacity: 0.25 }} />
 
             <p style={{
-              fontFamily: SANS, fontSize: 15, fontWeight: 400,
-              color: T.inkMid, lineHeight: 1.65, margin: 0,
+              fontFamily: SANS, fontSize: 21, fontWeight: 400,
+              color: T.inkFaint, lineHeight: 1.6, margin: 0,
             }}>
-              {tweaks.artistLabel} was a Japanese painter active during the late Edo period,
-              known for intimate scenes of women in domestic and social settings. Working in
-              the tradition of bijinga, or "pictures of beautiful women," her compositions
-              explore power, observation, and the unspoken — who leads, who watches, and
-              what is left unsaid.
+              Jacob Lawrence spent his career painting everyday life with bold, flat shapes
+              and vivid colors — a style all his own. "The Studio" invites you into the
+              creative space where art is made. Look closely: the details you find tell
+              the story of how a painting comes to life.
             </p>
           </div>
         </div>
 
-        {/* Callout pill — separate from the circle so it never overlaps */}
+        {/* "tap to play" pill */}
         <div style={{
           position: 'absolute',
-          bottom: 88,
-          right: 36,
-          background: T.ink,
-          color: T.paper,
-          fontFamily: SANS, fontWeight: 700, fontSize: 12,
-          padding: '8px 14px',
+          bottom: 88, right: 36,
+          background: 'rgba(0,0,0,0.06)',
+          color: T.inkMid,
+          fontFamily: MONO, fontWeight: 500, fontSize: 10,
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          padding: '7px 16px',
           borderRadius: 999,
           whiteSpace: 'nowrap',
-          letterSpacing: '-0.01em',
           opacity: popped ? 1 : 0,
           animation: popped ? 'float 3s ease-in-out infinite' : 'none',
           transition: 'opacity 0.3s ease',
         }}>
-          tap here ✨
-          {/* Triangle pointing down-right toward circle */}
-          <div style={{
-            position: 'absolute',
-            bottom: -7, right: 20,
-            width: 0, height: 0,
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: `7px solid ${T.ink}`,
-          }}/>
+          tap to play
         </div>
 
-        {/* Circle — only 1/4 peeks from extreme corner */}
+        {/* Subtle corner circle */}
         <div style={{
           position: 'absolute',
-          bottom: -72,
-          right: -72,
-          width: 144,
-          height: 144,
+          bottom: -72, right: -72,
+          width: 144, height: 144,
           animation: popped
             ? (wobble ? 'idleWobble 0.6s ease' : undefined)
             : 'popUp 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards',
           opacity: popped ? 1 : 0,
           transformOrigin: 'bottom right',
         }}>
-          {[0, 1, 2].map(i => (
-            <div key={i} style={{
-              position: 'absolute',
-              inset: 0,
-              borderRadius: '50%',
-              border: `2.5px solid ${T.highlight}`,
-              animation: `ripple 2s ease-out ${i * 0.65}s infinite`,
-            }}/>
-          ))}
           <div style={{
             position: 'absolute', inset: 0,
             borderRadius: '50%',
-            background: T.highlight,
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            paddingTop: 22,
-            paddingLeft: 22,
-            boxShadow: `-4px -4px 32px rgba(255,225,77,0.45), -2px -2px 10px rgba(0,0,0,0.10)`,
+            background: 'rgba(200,52,26,0.13)',
+            display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start',
+            paddingTop: 24, paddingLeft: 24,
           }}>
-            <span style={{ fontSize: 32, lineHeight: 1 }}>📲</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(200,52,26,0.55)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 12 Q6 6 12 6 Q18 6 18 12 Q18 18 12 18"/>
+              <path d="M3 12 Q3 3 12 3 Q21 3 21 12 Q21 21 12 21" opacity="0.5"/>
+              <circle cx="12" cy="12" r="2" fill="rgba(200,52,26,0.55)" stroke="none"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -496,13 +531,8 @@ function IdleScreen({ onTap, tweaks }) {
 }
 
 /* ─────────────────────────────────────────
-   SCREEN 2: UNLOCK
+   SCREEN 2: UNLOCK (TEAM NAME)
 ───────────────────────────────────────── */
-const TEAM_NAMES = [
-  'the observers', 'the storytellers', 'the witnesses',
-  'the interpreters', 'the wanderers', 'the dreamers',
-];
-
 function UnlockScreen({ teamName, onComplete }) {
   const [phase, setPhase] = React.useState(0);
 
@@ -515,59 +545,57 @@ function UnlockScreen({ teamName, onComplete }) {
 
   return (
     <div style={{
-      width:'100%', height:'100%',
+      width: '100%', height: '100%',
       background: T.ink,
-      display:'flex', flexDirection:'column',
-      alignItems:'center', justifyContent:'center',
-      position:'relative', overflow:'hidden',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      position: 'relative', overflow: 'hidden',
     }}>
-      {/* Concentric rings in highlight color */}
       {[0,1,2,3].map(i => (
         <div key={i} style={{
-          position:'absolute',
-          width: 80 + i*200,
-          height: 80 + i*200,
-          borderRadius:'50%',
-          border:`1.5px solid rgba(255,225,77,${0.45 - i*0.09})`,
-          animation:`ringExpand 1.3s cubic-bezier(0.22,1,0.36,1) ${i*0.1}s both`,
+          position: 'absolute',
+          width: 80 + i * 200, height: 80 + i * 200,
+          borderRadius: '50%',
+          border: `1.5px solid rgba(200,52,26,${0.45 - i * 0.09})`,
+          animation: `ringExpand 1.3s cubic-bezier(0.22,1,0.36,1) ${i * 0.1}s both`,
         }}/>
       ))}
 
-      {/* Wordmark center pulse */}
       <div style={{
-        position:'absolute', top:'50%', left:'50%',
-        transform: phase >= 1 ? 'translate(-50%, calc(-50% - 80px))' : 'translate(-50%, -50%)',
+        position: 'absolute', top: '50%', left: '50%',
+        transform: phase >= 1 ? 'translate(-50%, calc(-50% - 160px))' : 'translate(-50%, -50%)',
         opacity: phase < 2 ? 1 : 0,
         transition: 'transform 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.6s ease',
       }}>
-        <Wordmark size={28} color={T.paper}/>
+        <SamLogo />
       </div>
 
-      {/* Team name reveal */}
       <div style={{
-        textAlign:'center', zIndex:2,
+        textAlign: 'center', zIndex: 2,
         opacity: phase >= 1 ? 1 : 0,
         transform: phase >= 1 ? 'translateY(0)' : 'translateY(12px)',
-        transition:'opacity 0.6s ease, transform 0.6s ease',
+        transition: 'opacity 0.6s ease, transform 0.6s ease',
       }}>
-        <Eyebrow color={T.highlight} style={{ marginBottom: 18 }}>welcome back</Eyebrow>
+        <div style={{
+          fontFamily: MONO, fontWeight: 500, fontSize: 11,
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: T.highlight, marginBottom: 20,
+        }}>you're in</div>
 
         <div style={{
-          fontFamily: SANS,
-          fontSize: 56, fontWeight: 800,
+          fontFamily: SERIF,
+          fontSize: 64, fontWeight: 400,
           color: T.paper, lineHeight: 0.95,
-          letterSpacing: '-0.045em',
+          letterSpacing: '-0.015em',
         }}>
           {teamName}
         </div>
 
         <div style={{
-          fontFamily: SANS, fontSize: 14, fontWeight: 500,
-          color: 'rgba(255,255,255,0.55)',
-          marginTop: 16,
-          letterSpacing: '-0.005em',
+          fontFamily: SANS, fontSize: 16, fontWeight: 400,
+          color: T.inkMid, marginTop: 18,
         }}>
-          you&apos;re in the building 👋
+          your scavenger hunt begins now
         </div>
       </div>
 
@@ -582,398 +610,496 @@ function UnlockScreen({ teamName, onComplete }) {
 }
 
 /* ─────────────────────────────────────────
-   SCREEN 3: MISSION 1
+   SCREEN 3 & 4: RIDDLE
+   User taps the painting to place a circle,
+   then locks in. Reveals the correct zone.
 ───────────────────────────────────────── */
-function Mission1Screen({ teamName, onLock, tweaks }) {
-  const [story, setStory] = React.useState('');
-  const [listening, setListening] = React.useState(false);
+function RiddleScreen({ teamName, riddle, riddleIndex, totalRiddles, onDone }) {
   const [locked, setLocked] = React.useState(false);
-  const recognitionRef = React.useRef(null);
+  const [revealed, setRevealed] = React.useState(false);
+  const [hintShown, setHintShown] = React.useState(false);
+  /* Drawing state — all coordinates in px relative to the painting container */
+  const [isDrawing, setIsDrawing] = React.useState(false);
+  const [drawStart, setDrawStart] = React.useState(null);
+  const [drawCurrent, setDrawCurrent] = React.useState(null);
+  const [finalCircle, setFinalCircle] = React.useState(null);   // {cx,cy,r} px — user's drawn circle
+  const [revealCircle, setRevealCircle] = React.useState(null); // {cx,cy,r} px — correct answer circle
+  const containerRef = React.useRef(null);
 
-  const speechSupported = typeof window !== 'undefined' &&
-    ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
+  /* Compute the correct-answer circle in px once the panel collapses after reveal */
+  React.useLayoutEffect(() => {
+    if (!revealed || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setRevealCircle({
+      cx: (riddle.target.x / 100) * rect.width,
+      cy: (riddle.target.y / 100) * rect.height,
+      r: 52,
+    });
+  }, [revealed]);
 
-  const toggleVoice = () => {
-    if (!speechSupported) return;
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (listening) {
-      recognitionRef.current && recognitionRef.current.stop();
-      setListening(false);
-      return;
-    }
-    const rec = new SR();
-    rec.continuous = true;
-    rec.interimResults = true;
-    rec.lang = 'en-US';
-    recognitionRef.current = rec;
-    let base = story;
-    rec.onresult = (e) => {
-      let interim = '', final = '';
-      for (let i = e.resultIndex; i < e.results.length; i++) {
-        const t = e.results[i][0].transcript;
-        if (e.results[i].isFinal) final += t;
-        else interim += t;
-      }
-      if (final) base += (base ? ' ' : '') + final;
-      setStory(base + (interim ? (base ? ' ' : '') + interim : ''));
-    };
-    rec.onerror = () => setListening(false);
-    rec.onend = () => setListening(false);
-    rec.start();
-    setListening(true);
+  /* Pointer helpers — works for mouse and touch via pointer events */
+  const getPx = (e) => {
+    const rect = containerRef.current.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e.changedTouches ? e.changedTouches[0] : e;
+    return { x: src.clientX - rect.left, y: src.clientY - rect.top };
   };
 
-  React.useEffect(() => () => {
-    recognitionRef.current && recognitionRef.current.stop();
-  }, []);
+  const handlePointerDown = (e) => {
+    if (locked) return;
+    e.preventDefault();
+    const pos = getPx(e);
+    setIsDrawing(true);
+    setDrawStart(pos);
+    setDrawCurrent(pos);
+    setFinalCircle(null); // allow redrawing
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDrawing || locked) return;
+    e.preventDefault();
+    setDrawCurrent(getPx(e));
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isDrawing) return;
+    e.preventDefault();
+    const pos = getPx(e);
+    const dx = pos.x - drawStart.x;
+    const dy = pos.y - drawStart.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > 14) {
+      setFinalCircle({
+        cx: (drawStart.x + pos.x) / 2,
+        cy: (drawStart.y + pos.y) / 2,
+        r: dist / 2,
+      });
+    }
+    setIsDrawing(false);
+    setDrawStart(null);
+    setDrawCurrent(null);
+  };
 
   const handleLock = () => {
-    if (!story.trim()) return;
-    recognitionRef.current && recognitionRef.current.stop();
-    setListening(false);
+    if (!finalCircle || locked) return;
     setLocked(true);
-    setTimeout(() => onLock(story.trim()), 600);
+    setTimeout(() => setRevealed(true), 300);
   };
 
+  const isLast = riddleIndex === totalRiddles - 1;
+
+  /* Live circle rendered while the user is actively dragging */
+  const liveCircle = isDrawing && drawStart && drawCurrent ? {
+    cx: (drawStart.x + drawCurrent.x) / 2,
+    cy: (drawStart.y + drawCurrent.y) / 2,
+    r: Math.max(1, Math.hypot(drawCurrent.x - drawStart.x, drawCurrent.y - drawStart.y) / 2),
+  } : null;
+
   return (
     <div style={{
-      width:'100%', height:'100%',
+      width: '100%', height: '100%',
       background: T.paper,
-      display:'flex', flexDirection:'column',
-      color: T.ink, position:'relative', overflow:'hidden',
+      display: 'flex', flexDirection: 'column',
+      color: T.ink, overflow: 'hidden',
     }}>
-
-      {/* Header */}
-      <div style={{
-        padding:'24px 40px', display:'flex',
-        justifyContent:'space-between', alignItems:'center',
-        borderBottom: `1px solid ${T.rule}`,
-      }}>
-        <Wordmark size={20}/>
-        <div style={{
-          display:'flex', alignItems:'center', gap: 8,
-          background: T.ink, color: T.paper,
-          padding: '6px 14px', borderRadius: 999,
-          fontFamily: SANS, fontWeight: 600, fontSize: 11,
-        }}>
-          <span style={{
-            width: 6, height: 6, borderRadius: '50%',
-            background: T.highlight,
-          }}/>
-          <span>{teamName}</span>
-        </div>
-      </div>
-
-      <div style={{ padding:'36px 40px 0', flex:1, display:'flex', flexDirection:'column' }}>
-
-        {/* Mission progress */}
-        <div style={{ display:'flex', alignItems:'center', gap: 10, marginBottom: 20 }}>
-          <Eyebrow>mission 1 of 2</Eyebrow>
-          <div style={{ flex:1, display:'flex', gap: 4 }}>
-            <div style={{ flex:1, height: 3, background: T.ink, borderRadius: 2 }}/>
-            <div style={{ flex:1, height: 3, background: T.rule, borderRadius: 2 }}/>
-          </div>
-        </div>
-
-        <h2 style={{
-          fontFamily: SANS,
-          fontSize: 42, fontWeight: 800, lineHeight: 0.98,
-          color: T.ink, letterSpacing: '-0.04em',
-          marginBottom: 14,
-        }}>
-          what&apos;s the<br/>drama here? 👀
-        </h2>
-
-        <p style={{
-          fontFamily: SERIF,
-          fontSize: 17, fontWeight: 400, lineHeight: 1.5,
-          color: T.inkMid, fontStyle: 'italic',
-          marginBottom: 24, maxWidth: 540,
-        }}>
-          look at the painting. talk it out as a group. then tell us your most creative story.
-        </p>
-
-        {/* Story input — sticky-note feel */}
-        <div style={{ flex:1, display:'flex', flexDirection:'column' }}>
-          <div style={{ position:'relative', flex:1, minHeight: 240 }}>
-            <textarea
-              value={story}
-              onChange={e => !locked && setStory(e.target.value)}
-              readOnly={locked}
-              placeholder="tell us your juiciest story."
-              style={{
-                width:'100%', height:'100%',
-                minHeight: 240,
-                background: T.highlight,
-                border: 'none',
-                borderRadius: 18,
-                padding: '24px 26px',
-                fontFamily: SERIF,
-                fontSize: 18, fontWeight: 400, lineHeight: 1.55,
-                color: T.ink,
-                resize:'none',
-                outline:'none',
-                boxSizing:'border-box',
-                caretColor: T.ink,
-                boxShadow: listening
-                  ? `0 0 0 3px ${T.ink}`
-                  : `0 4px 0 ${T.highlightDeep}`,
-                transition: 'box-shadow 0.2s',
-              }}
-            />
-            {listening && (
-              <div style={{
-                position:'absolute', top:18, right:18,
-                display:'flex', alignItems:'center', gap:8,
-                background: T.ink, color: T.paper,
-                padding: '6px 12px', borderRadius: 999,
-                fontFamily: SANS, fontWeight: 600, fontSize: 11,
-              }}>
-                <div style={{
-                  width: 7, height: 7, borderRadius:'50%',
-                  background: '#ff4444',
-                  animation: 'recPulse 1s ease-in-out infinite',
-                }}/>
-                listening
-              </div>
-            )}
-            {story.length > 0 && (
-              <div style={{
-                position:'absolute', bottom:14, right:18,
-                fontFamily: MONO, fontSize: 10,
-                color: 'rgba(0,0,0,0.4)',
-              }}>
-                {story.length} chars
-              </div>
-            )}
-          </div>
-
-          {/* Voice button — outline pill */}
-          <button onClick={toggleVoice} style={{
-            marginTop: 12,
-            padding: '14px 22px',
-            borderRadius: 999,
-            border: `1.5px solid ${listening ? T.ink : T.rule}`,
-            background: listening ? T.ink : T.paper,
-            color: listening ? T.paper : T.ink,
-            cursor: speechSupported ? 'pointer' : 'not-allowed',
-            opacity: speechSupported ? 1 : 0.4,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-            fontFamily: SANS, fontWeight: 600, fontSize: 13,
-          }}>
-            <span style={{ fontSize: 14 }}>🎙️</span>
-            <span>{listening ? 'tap to stop' : (speechSupported ? 'narrate with voice' : 'voice unavailable')}</span>
-          </button>
-        </div>
-
-        {/* Lock button */}
-        <div style={{ paddingBottom: 32, paddingTop: 16 }}>
-          <PillButton
-            onClick={handleLock}
-            disabled={!story.trim() || locked}
-            emoji="🔒"
-          >
-            lock it in
-          </PillButton>
-        </div>
-      </div>
-
       <style>{`
-        @keyframes recPulse {
-          0%,100% { opacity: 1; }
-          50% { opacity: 0.3; }
+        @keyframes labelFadeIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes hintExpand {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes revealRing {
+          0%   { opacity: 0; stroke-dashoffset: 400; }
+          40%  { opacity: 1; }
+          100% { opacity: 1; stroke-dashoffset: 0; }
+        }
+        @keyframes userRingSettle {
+          0%   { stroke-width: 5; }
+          100% { stroke-width: 3.5; }
         }
       `}</style>
-    </div>
-  );
-}
 
-/* ─────────────────────────────────────────
-   SCREEN 4: MISSION 2
-───────────────────────────────────────── */
-function CameraPreview({ onCapture, countdown }) {
-  const videoRef = React.useRef(null);
-  const [camError, setCamError] = React.useState(false);
+      <ScreenHeader teamName={teamName} />
 
-  React.useEffect(() => {
-    let stream;
-    navigator.mediaDevices?.getUserMedia({ video: { facingMode: 'user' }, audio: false })
-      .then(s => {
-        stream = s;
-        if (videoRef.current) {
-          videoRef.current.srcObject = s;
-          videoRef.current.play();
-        }
-      })
-      .catch(() => setCamError(true));
-    return () => stream?.getTracks().forEach(t => t.stop());
-  }, []);
-
-  if (camError) {
-    return (
+      {/* Progress bar */}
       <div style={{
-        flex: 1, borderRadius: 20, overflow: 'hidden',
-        background: T.ink,
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center', gap: 12,
+        padding: '12px 40px 0',
+        display: 'flex', alignItems: 'center', gap: 12,
+        flexShrink: 0,
       }}>
-        <span style={{ fontSize: 36 }}>📷</span>
         <div style={{
-          fontFamily: SANS, fontSize: 13, fontWeight: 500,
-          color: 'rgba(255,255,255,0.5)', textAlign: 'center', maxWidth: 240,
+          fontFamily: MONO, fontWeight: 500, fontSize: 11,
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: T.inkMid,
         }}>
-          camera access needed — allow it in your browser settings
+          {String(riddleIndex + 1).padStart(2, '0')} / {String(totalRiddles).padStart(2, '0')}
+        </div>
+        <div style={{ flex: 1, display: 'flex', gap: 4 }}>
+          {Array.from({ length: totalRiddles }).map((_, i) => (
+            <div key={i} style={{
+              flex: 1, height: 2, borderRadius: 2,
+              background: i <= riddleIndex ? T.ink : T.rule,
+              opacity: i <= riddleIndex ? 1 : 0.4,
+            }}/>
+          ))}
         </div>
       </div>
-    );
-  }
 
-  return (
-    <div style={{
-      flex: 1, borderRadius: 20, overflow: 'hidden',
-      position: 'relative', background: '#000',
-    }}>
-      <video
-        ref={videoRef}
-        autoPlay
-        playsInline
-        muted
+      {/* Riddle panel — TOP, no button */}
+      <div style={{
+        flexShrink: 0,
+        background: T.paper,
+        borderBottom: revealed ? `2px solid ${T.highlight}` : `1px solid rgba(255,255,255,0.12)`,
+        padding: '16px 40px 20px',
+        transition: 'border-bottom-color 0.3s',
+      }}>
+        {!revealed ? (
+          <>
+            <div style={{
+              fontFamily: MONO, fontWeight: 500, fontSize: 11,
+              letterSpacing: '0.10em', textTransform: 'uppercase',
+              color: T.highlight, marginBottom: 8,
+            }}>
+              riddle {riddle.index}
+            </div>
+
+            <p style={{
+              fontFamily: SERIF, fontWeight: 400,
+              fontSize: 28, lineHeight: 1.2,
+              color: T.ink, letterSpacing: '-0.01em',
+              marginBottom: 14,
+            }}>
+              {riddle.question}
+            </p>
+
+            {/* Hint chip → expands to hint text */}
+            {!hintShown ? (
+              <button
+                onClick={(e) => { e.stopPropagation(); setHintShown(true); }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  background: 'transparent',
+                  border: `1.5px solid ${T.rule}`,
+                  color: T.inkMid,
+                  padding: '5px 14px', borderRadius: 999,
+                  fontFamily: MONO, fontSize: 10, fontWeight: 500,
+                  letterSpacing: '0.07em', textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'border-color 0.2s, color 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = T.ink; e.currentTarget.style.color = T.ink; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = T.rule; e.currentTarget.style.color = T.inkMid; }}
+              >
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                need a hint?
+              </button>
+            ) : (
+              <div style={{
+                display: 'flex', alignItems: 'flex-start', gap: 10,
+                padding: '10px 14px',
+                background: T.paperDim,
+                border: `1.5px solid ${T.rule}`,
+                borderRadius: 12,
+                animation: 'hintExpand 0.3s ease-out',
+              }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={T.highlight} strokeWidth="2.5" strokeLinecap="round" style={{ flexShrink: 0, marginTop: 2 }}>
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <span style={{
+                  fontFamily: SANS, fontSize: 14, fontWeight: 400,
+                  color: T.inkSoft, lineHeight: 1.5,
+                }}>
+                  {riddle.hint}
+                </span>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <div style={{
+              fontFamily: MONO, fontWeight: 500, fontSize: 11,
+              letterSpacing: '0.10em', textTransform: 'uppercase',
+              color: T.highlight, marginBottom: 8,
+              animation: 'labelFadeIn 0.4s ease-out',
+            }}>
+              nice find
+            </div>
+            <p style={{
+              fontFamily: SERIF, fontWeight: 400,
+              fontSize: 26, lineHeight: 1.2,
+              color: T.ink, letterSpacing: '-0.01em',
+              margin: 0,
+              animation: 'labelFadeIn 0.4s 0.1s both ease-out',
+            }}>
+              {isLast
+                ? "You found both hidden details. Now let's dig into what makes this painting so special."
+                : "Got it. Ready for the next one?"}
+            </p>
+          </>
+        )}
+      </div>
+
+      {/* Painting area — MIDDLE, fills remaining space */}
+      <div
+        ref={containerRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
         style={{
-          width: '100%', height: '100%',
-          objectFit: 'cover',
-          transform: 'scaleX(-1)',
+          flex: 1,
+          position: 'relative',
+          overflow: 'hidden',
+          touchAction: 'none',
+          userSelect: 'none',
+          cursor: locked ? 'default' : 'crosshair',
         }}
-      />
-      {/* Live badge — hidden during countdown */}
-      {!countdown && (
-        <div style={{
-          position: 'absolute', top: 14, left: 14,
-          background: 'rgba(0,0,0,0.55)',
-          backdropFilter: 'blur(8px)',
-          color: T.paper,
-          padding: '5px 12px', borderRadius: 999,
-          fontFamily: MONO, fontSize: 10,
-          display: 'flex', alignItems: 'center', gap: 7,
-        }}>
-          <span style={{
-            width: 7, height: 7, borderRadius: '50%',
-            background: '#ff3b30',
-            animation: 'recPulse 1s ease-in-out infinite',
-          }}/>
-          live
-        </div>
-      )}
-
-      {/* Countdown overlaid on camera */}
-      {countdown !== null && countdown > 0 && (
+      >
+        {/* Painting */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'rgba(0,0,0,0.55)',
-          backdropFilter: 'blur(4px)',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: 12,
+          backgroundImage: "url('./jacob-lawrence.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }} />
+
+        {/* Draw instruction — only before first stroke */}
+        {!finalCircle && !isDrawing && !locked && (
+          <div style={{
+            position: 'absolute', top: 16, left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'rgba(14,14,12,0.72)',
+            color: T.inkSoft,
+            padding: '7px 16px', borderRadius: 999,
+            fontFamily: MONO, fontSize: 10, fontWeight: 500,
+            letterSpacing: '0.07em', textTransform: 'uppercase',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
+          }}>
+            draw a circle around your answer
+          </div>
+        )}
+
+        {/* SVG overlay — all circles live here */}
+        <svg style={{
+          position: 'absolute', inset: 0,
+          width: '100%', height: '100%',
+          pointerEvents: 'none', overflow: 'visible',
         }}>
+          {/* Live ghost circle while dragging */}
+          {liveCircle && (
+            <circle
+              cx={liveCircle.cx} cy={liveCircle.cy} r={liveCircle.r}
+              fill="rgba(200,52,26,0.06)"
+              stroke={T.highlight}
+              strokeWidth="2.5"
+              strokeDasharray="6 4"
+              opacity="0.8"
+            />
+          )}
+
+          {/* User's finalised drawn circle */}
+          {finalCircle && (
+            <circle
+              cx={finalCircle.cx} cy={finalCircle.cy} r={finalCircle.r}
+              fill="rgba(200,52,26,0.08)"
+              stroke={T.highlight}
+              strokeWidth="3.5"
+              opacity={revealed ? 0.45 : 1}
+              style={{ transition: 'opacity 0.4s' }}
+            />
+          )}
+
+          {/* Correct-answer reveal ring */}
+          {revealCircle && (
+            <circle
+              cx={revealCircle.cx} cy={revealCircle.cy} r={revealCircle.r}
+              fill="rgba(244,239,226,0.15)"
+              stroke={T.ink}
+              strokeWidth="3"
+              strokeDasharray="380"
+              strokeDashoffset="0"
+              style={{ animation: 'revealRing 0.7s cubic-bezier(0.4,0,0.2,1) both' }}
+            />
+          )}
+        </svg>
+
+        {/* Reveal label — absolutely positioned below the correct circle */}
+        {revealCircle && (
           <div style={{
-            fontFamily: SANS, fontWeight: 600, fontSize: 13,
-            color: T.highlight, letterSpacing: '0.06em', textTransform: 'lowercase',
+            position: 'absolute',
+            left: `${riddle.target.x}%`,
+            top: `calc(${riddle.target.y}% + ${revealCircle.r + 12}px)`,
+            transform: 'translateX(-50%)',
+            background: T.ink, color: T.paper,
+            padding: '5px 12px', borderRadius: 999,
+            fontFamily: MONO, fontSize: 10, fontWeight: 700,
+            letterSpacing: '0.06em', textTransform: 'uppercase',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
+            animation: 'labelFadeIn 0.4s 0.5s both ease-out',
           }}>
-            smile! 📸
+            {riddle.revealLabel}
           </div>
-          <div style={{
-            fontFamily: SANS, fontSize: 140, fontWeight: 800,
-            color: T.paper, lineHeight: 1,
-            letterSpacing: '-0.05em',
-            animation: 'countPulse 0.9s ease-in-out',
-          }}>
-            {countdown}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* Button — pinned to bottom */}
+      <div style={{
+        flexShrink: 0,
+        padding: '16px 40px 32px',
+        background: T.paper,
+        borderTop: `1px solid rgba(255,255,255,0.08)`,
+      }}>
+        {!revealed ? (
+          <PillButton onClick={handleLock} disabled={!finalCircle || locked} variant="primary">
+            lock it in
+          </PillButton>
+        ) : (
+          <PillButton onClick={onDone} variant="accent"
+            style={{ animation: 'labelFadeIn 0.4s 0.2s both ease-out' }}>
+            {isLast ? 'see fun facts →' : 'next riddle →'}
+          </PillButton>
+        )}
+      </div>
     </div>
   );
 }
 
-function Mission2Screen({ teamName, onCapture, tweaks }) {
-  const [countdown, setCountdown] = React.useState(null);
+/* ─────────────────────────────────────────
+   SCREEN 5: FUN FACTS
+   Full-bleed painting bg, pans per fact, tap to advance
+───────────────────────────────────────── */
+function FactsScreen({ teamName, onDone }) {
+  const [idx, setIdx] = React.useState(0);
+  const [animKey, setAnimKey] = React.useState(0);
 
-  const startCountdown = () => setCountdown(10);
+  const advance = () => {
+    if (idx < FACTS.length - 1) {
+      setIdx(i => i + 1);
+      setAnimKey(k => k + 1);
+    } else {
+      onDone();
+    }
+  };
 
-  React.useEffect(() => {
-    if (countdown === null) return;
-    if (countdown === 0) { setTimeout(() => onCapture(), 400); return; }
-    const t = setTimeout(() => setCountdown(c => c - 1), 1000);
-    return () => clearTimeout(t);
-  }, [countdown]);
+  const f = FACTS[idx];
 
   return (
-    <div style={{
-      width:'100%', height:'100%',
-      background: T.paper,
-      display:'flex', flexDirection:'column',
-      color: T.ink, position:'relative', overflow:'hidden',
+    <div onClick={advance} style={{
+      width: '100%', height: '100%',
+      position: 'relative',
+      color: T.ink, cursor: 'pointer',
+      overflow: 'hidden',
     }}>
+      <style>{`
+        @keyframes factIn {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
-      <style>{`@keyframes countPulse {
-        0%   { transform: scale(1.5); opacity: 0; }
-        40%  { transform: scale(1.0); opacity: 1; }
-        100% { transform: scale(0.8); opacity: 0.2; }
-      }`}</style>
-
-      {/* Header */}
+      {/* Painting background — zooms per fact */}
       <div style={{
-        padding:'24px 40px', display:'flex',
-        justifyContent:'space-between', alignItems:'center',
-        borderBottom: `1px solid ${T.rule}`,
+        position: 'absolute', inset: 0,
+        backgroundImage: "url('./jacob-lawrence.jpg')",
+        backgroundSize: f.zoom.size,
+        backgroundPosition: f.zoom.pos,
+        backgroundRepeat: 'no-repeat',
+        transition: 'background-size 1.4s cubic-bezier(0.4,0,0.2,1), background-position 1.4s cubic-bezier(0.4,0,0.2,1)',
+      }} />
+
+      {/* Dark overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'rgba(14,14,12,0.72)',
+      }} />
+
+      {/* UI */}
+      <div style={{
+        position: 'relative', zIndex: 1,
+        width: '100%', height: '100%',
+        display: 'flex', flexDirection: 'column',
       }}>
-        <Wordmark size={20}/>
+
+        {/* Header */}
         <div style={{
-          display:'flex', alignItems:'center', gap: 8,
-          background: T.ink, color: T.paper,
-          padding: '6px 14px', borderRadius: 999,
-          fontFamily: SANS, fontWeight: 600, fontSize: 11,
+          padding: '20px 40px',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          borderBottom: '1px solid rgba(255,255,255,0.18)',
+          flexShrink: 0,
         }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: T.highlight }}/>
-          <span>{teamName}</span>
-        </div>
-      </div>
-
-      <div style={{ padding:'28px 40px 0', flex:1, display:'flex', flexDirection:'column' }}>
-
-        <div style={{ display:'flex', alignItems:'center', gap: 10, marginBottom: 16 }}>
-          <Eyebrow>mission 2 of 2</Eyebrow>
-          <div style={{ flex:1, display:'flex', gap: 4 }}>
-            <div style={{ flex:1, height: 3, background: T.ink, borderRadius: 2 }}/>
-            <div style={{ flex:1, height: 3, background: T.ink, borderRadius: 2 }}/>
-          </div>
+          <SamLogo height={28} inverted />
+          <TeamBadge teamName={teamName} />
         </div>
 
-        <h2 style={{
-          fontFamily: SANS, fontSize: 38, fontWeight: 800, lineHeight: 0.98,
-          color: T.ink, letterSpacing: '-0.04em', marginBottom: 10,
+        {/* Eyebrow */}
+        <div style={{
+          padding: '28px 40px 0',
+          fontFamily: MONO, fontWeight: 500, fontSize: 11,
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: T.highlight, flexShrink: 0,
         }}>
-          become the<br/>painting 🎭
-        </h2>
+          did you know
+        </div>
 
-        <p style={{
-          fontFamily: SERIF, fontSize: 16, fontWeight: 400, lineHeight: 1.5,
-          color: T.inkMid, fontStyle: 'italic', marginBottom: 16, maxWidth: 540,
+        {/* Fact — animates per card */}
+        <div key={animKey} style={{
+          flex: 1,
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 40px 24px',
+          animation: 'factIn 0.45s cubic-bezier(0.34,1.56,0.64,1)',
         }}>
-          step back from the screen. strike your pose — then hit ready.
-        </p>
-
-        {/* Camera preview */}
-        <CameraPreview onCapture={onCapture} countdown={countdown} />
-
-        {/* Ready CTA */}
-        <div style={{ paddingBottom: 28, paddingTop: 16 }}>
-          <PillButton onClick={startCountdown} disabled={countdown !== null} emoji="⏱️">
-            start the timer
-          </PillButton>
           <div style={{
-            textAlign:'center', marginTop: 10,
-            fontFamily: SANS, fontSize: 11, fontWeight: 500, color: T.inkFaint,
+            fontFamily: SERIF, fontWeight: 400,
+            fontSize: 160, lineHeight: 0.85,
+            color: T.highlight, opacity: 0.25,
+            letterSpacing: '-0.03em',
+            marginBottom: 16,
+            userSelect: 'none', pointerEvents: 'none',
           }}>
-            10-second countdown · step back from the screen
+            {f.index}
+          </div>
+
+          <p style={{
+            fontFamily: SANS, fontWeight: 500, fontSize: 28,
+            color: T.ink, lineHeight: 1.44,
+            letterSpacing: '-0.01em', margin: 0,
+          }}>
+            {f.fact}
+          </p>
+        </div>
+
+        {/* Bottom nav */}
+        <div style={{
+          padding: '20px 40px 32px',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexShrink: 0,
+          borderTop: '1px solid rgba(255,255,255,0.18)',
+        }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {FACTS.map((_, i) => (
+              <div key={i} style={{
+                width: i === idx ? 28 : 8, height: 8,
+                borderRadius: 999,
+                background: i === idx ? T.highlight : 'rgba(255,255,255,0.3)',
+                transition: 'width 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s',
+              }}/>
+            ))}
+          </div>
+          <div style={{
+            fontFamily: MONO, fontWeight: 500, fontSize: 11,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: T.inkSoft,
+          }}>
+            {idx < FACTS.length - 1 ? 'tap anywhere to continue →' : 'tap to finish →'}
           </div>
         </div>
       </div>
@@ -982,138 +1108,90 @@ function Mission2Screen({ teamName, onCapture, tweaks }) {
 }
 
 /* ─────────────────────────────────────────
-   SCREEN 5: COMPLETION
+   SCREEN 6: PROGRESS MAP
 ───────────────────────────────────────── */
-function CompletionScreen({ teamName, chosenPrompts, onReset, tweaks }) {
+function MapScreen({ teamName, onReset }) {
   const [fadeIn, setFadeIn] = React.useState(false);
+  const [mapErr, setMapErr] = React.useState(false);
   React.useEffect(() => { setTimeout(() => setFadeIn(true), 100); }, []);
-  const storyText = typeof chosenPrompts === 'string' ? chosenPrompts : '';
 
   return (
     <div style={{
-      width:'100%', height:'100%',
+      width: '100%', height: '100%',
       background: T.paper,
-      display:'flex', flexDirection:'column',
-      color: T.ink, position:'relative', overflow:'hidden',
+      display: 'flex', flexDirection: 'column',
+      color: T.ink, overflow: 'hidden',
       opacity: fadeIn ? 1 : 0,
-      transition:'opacity 0.6s ease',
+      transition: 'opacity 0.6s ease',
     }}>
+      <style>{`
+        @keyframes mapSlideUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
-      {/* Header */}
+      <ScreenHeader teamName={teamName} />
+
       <div style={{
-        padding:'24px 40px', display:'flex',
-        justifyContent:'space-between', alignItems:'center',
-        borderBottom: `1px solid ${T.rule}`,
+        flex: 1, overflowY: 'auto', overflowX: 'hidden',
+        padding: '32px 40px 48px',
+        display: 'flex', flexDirection: 'column', gap: 24,
       }}>
-        <Wordmark size={20}/>
-        <div style={{
-          display:'flex', alignItems:'center', gap: 8,
-          background: T.highlight, color: T.ink,
-          padding: '6px 14px', borderRadius: 999,
-          fontFamily: SANS, fontWeight: 700, fontSize: 11,
-        }}>
-          <span>✓</span>
-          <span>complete</span>
-        </div>
-      </div>
 
-      <div style={{ padding:'36px 40px 0', flex:1, display:'flex', flexDirection:'column' }}>
-
-        <Eyebrow style={{ marginBottom: 18 }}>challenge complete</Eyebrow>
-
-        <h1 style={{
-          fontFamily: SANS,
-          fontSize: 44, fontWeight: 800, lineHeight: 0.98,
-          color: T.ink, letterSpacing: '-0.04em',
-          marginBottom: 8,
-        }}>
-          not bad,<br/>{teamName} 🎉
-        </h1>
-
-        <div style={{
-          fontFamily: SERIF, fontSize: 16, fontWeight: 400,
-          fontStyle: 'italic', color: T.inkMid,
-          marginBottom: 28,
-        }}>
-          your take is officially on record.
-        </div>
-
-        {/* Group photo placeholder */}
-        <div style={{
-          height: 200,
-          background: T.ink,
-          backgroundImage: `repeating-linear-gradient(135deg, transparent, transparent 12px, rgba(255,255,255,0.04) 12px, rgba(255,255,255,0.04) 24px)`,
-          borderRadius: 16,
-          display:'flex', alignItems:'center', justifyContent:'center',
-          position:'relative',
-          marginBottom: 20,
-        }}>
-          <div style={{ textAlign:'center', color: 'rgba(255,255,255,0.5)' }}>
-            <div style={{ fontSize: 28, marginBottom: 6 }}>📷</div>
-            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing:'0.04em' }}>
-              group_photo.jpg
-            </div>
-          </div>
+        <div style={{ animation: 'mapSlideUp 0.5s 0.15s both ease-out' }}>
           <div style={{
-            position:'absolute', top: 12, left: 12,
-            background: T.paper, color: T.ink,
-            padding: '4px 10px', borderRadius: 999,
-            fontFamily: MONO, fontSize: 9,
-            display: 'flex', alignItems: 'center', gap: 6,
+            fontFamily: MONO, fontWeight: 500, fontSize: 11,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: T.inkMid, marginBottom: 10,
+          }}>your journey</div>
+          <h1 style={{
+            fontFamily: SERIF, fontSize: 44, fontWeight: 400,
+            lineHeight: 1.05, letterSpacing: '-0.015em',
+            color: T.ink, margin: 0,
           }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: '#ff4444',
-            }}/>
-            captured
-          </div>
-          <div style={{
-            position:'absolute', bottom: 12, right: 14,
-            fontFamily: MONO, fontSize: 9,
-            color: 'rgba(255,255,255,0.4)',
-          }}>
-            {new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
-          </div>
+            2 steps away from collecting your personalized memorabilia!!
+          </h1>
         </div>
 
-        {/* Their interpretation */}
-        <div style={{ marginBottom: 24 }}>
-          <Eyebrow style={{ marginBottom: 10 }}>your interpretation</Eyebrow>
-          {storyText ? (
-            <div style={{
-              padding: '20px 22px',
-              background: T.highlight,
-              borderRadius: 14,
-              boxShadow: `0 4px 0 ${T.highlightDeep}`,
-            }}>
-              <p style={{
-                fontFamily: SERIF,
-                fontSize: 16, fontWeight: 400, lineHeight: 1.55,
-                color: T.ink,
-                fontStyle: 'italic',
-              }}>
-                "{storyText}"
-              </p>
-            </div>
+        {/* Map image */}
+        <div style={{
+          width: '100%', borderRadius: 20,
+          overflow: 'hidden', flexShrink: 0,
+          border: `2px solid ${T.ink}`,
+          background: T.paperDeep,
+          position: 'relative',
+          animation: 'mapSlideUp 0.5s 0.28s both ease-out',
+        }}>
+          {!mapErr ? (
+            <img
+              src="./progress-map-1.jpg"
+              onError={() => setMapErr(true)}
+              style={{ width: '100%', display: 'block' }}
+            />
           ) : (
-            <div style={{ fontFamily: SANS, fontSize: 13, color: T.inkFaint }}>
-              (no story recorded)
+            <div style={{
+              height: 320,
+              backgroundImage: `repeating-linear-gradient(45deg, ${T.paperDim}, ${T.paperDim} 14px, ${T.paperDeep} 14px, ${T.paperDeep} 28px)`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <div style={{
+                fontFamily: MONO, fontSize: 10,
+                letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: T.inkMid, textAlign: 'center',
+              }}>
+                progress-map-1.jpg
+              </div>
             </div>
           )}
         </div>
 
-        {/* Actions */}
-        <div style={{
-          marginTop:'auto', paddingBottom: 32,
-          display:'flex', flexDirection:'column', gap: 10,
-        }}>
-          <PillButton emoji="👀" variant="outline">
-            compare with other teams
-          </PillButton>
-          <PillButton onClick={onReset} emoji="↺">
-            return to label
+        <div style={{ animation: 'mapSlideUp 0.5s 0.4s both ease-out' }}>
+          <PillButton onClick={onReset} variant="primary">
+            ↺ return to label
           </PillButton>
         </div>
+
       </div>
     </div>
   );
@@ -1123,38 +1201,77 @@ function CompletionScreen({ teamName, chosenPrompts, onReset, tweaks }) {
    MAIN APP
 ───────────────────────────────────────── */
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "darkMode": false,
-  "artistLabel": "katsushika ōi, attributed",
-  "teamPrefix": "the"
+  "screen": "idle"
 }/*EDITMODE-END*/;
 
 function App() {
   const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
   const [screen, setScreen] = React.useState('idle');
   const [teamName, setTeamName] = React.useState('');
-  const [chosenPrompts, setChosenPrompts] = React.useState('');
+  const [riddleIndex, setRiddleIndex] = React.useState(0);
 
   const scale = useScaleToFit(768, 1024);
 
   const handleTap = () => {
     const name = TEAM_NAMES[Math.floor(Math.random() * TEAM_NAMES.length)];
     setTeamName(name);
+    setRiddleIndex(0);
     setScreen('unlock');
   };
-  const handleUnlockDone = () => setScreen('mission1');
-  const handleLockStory = (story) => { setChosenPrompts(story); setScreen('mission2'); };
-  const handleCapture = () => setScreen('completion');
-  const handleReset = () => { setTeamName(''); setChosenPrompts(''); setScreen('idle'); };
+
+  const handleUnlockDone = () => setScreen('riddle');
+
+  const handleRiddleDone = () => {
+    if (riddleIndex < RIDDLES.length - 1) {
+      setRiddleIndex(i => i + 1);
+      setScreen('__transition__');
+      setTimeout(() => setScreen('riddle'), 20);
+    } else {
+      setScreen('facts');
+    }
+  };
+
+  const handleFactsDone = () => setScreen('map');
+  const handleReset = () => { setTeamName(''); setRiddleIndex(0); setScreen('idle'); };
 
   const renderScreen = () => {
     switch (screen) {
-      case 'idle':       return <IdleScreen onTap={handleTap} tweaks={tweaks} />;
-      case 'unlock':     return <UnlockScreen teamName={teamName} onComplete={handleUnlockDone} />;
-      case 'mission1':   return <Mission1Screen teamName={teamName} onLock={handleLockStory} tweaks={tweaks} />;
-      case 'mission2':   return <Mission2Screen teamName={teamName} onCapture={handleCapture} tweaks={tweaks} />;
-      case 'completion': return <CompletionScreen teamName={teamName} chosenPrompts={chosenPrompts} onReset={handleReset} tweaks={tweaks} />;
-      default: return null;
+      case 'idle':
+        return <IdleScreen onTap={handleTap} />;
+      case 'unlock':
+        return <UnlockScreen teamName={teamName} onComplete={handleUnlockDone} />;
+      case 'riddle':
+        return (
+          <RiddleScreen
+            key={riddleIndex}
+            teamName={teamName}
+            riddle={RIDDLES[riddleIndex]}
+            riddleIndex={riddleIndex}
+            totalRiddles={RIDDLES.length}
+            onDone={handleRiddleDone}
+          />
+        );
+      case 'facts':
+        return <FactsScreen teamName={teamName} onDone={handleFactsDone} />;
+      case 'map':
+        return <MapScreen teamName={teamName} onReset={handleReset} />;
+      default:
+        return null;
     }
+  };
+
+  /* Jump-to-screen via tweaks panel */
+  const screenOptions = ['idle', 'unlock', 'riddle 1', 'riddle 2', 'facts', 'map'];
+  const currentLabel = screen === 'riddle' ? `riddle ${riddleIndex + 1}` : screen;
+
+  const handleJump = (v) => {
+    if (v !== 'idle' && !teamName) setTeamName(TEAM_NAMES[0]);
+    if (v === 'idle')          { handleReset(); }
+    else if (v === 'unlock')   { setScreen('unlock'); }
+    else if (v === 'riddle 1') { setRiddleIndex(0); setScreen('riddle'); }
+    else if (v === 'riddle 2') { setRiddleIndex(1); setScreen('riddle'); }
+    else if (v === 'facts')    { setScreen('facts'); }
+    else if (v === 'map')      { setScreen('map'); }
   };
 
   return (
@@ -1165,52 +1282,41 @@ function App() {
         transition: 'transform 0.2s ease',
       }}>
         <div className="tablet-shell" data-screen-label={`Tablet — ${screen}`}>
-          {/* Status pill */}
           <div style={{
-            position:'absolute', top:14, left:0, right:0,
-            display:'flex', justifyContent:'center',
-            zIndex:100, pointerEvents:'none',
+            position: 'absolute', top: 14, left: 0, right: 0,
+            display: 'flex', justifyContent: 'center',
+            zIndex: 100, pointerEvents: 'none',
           }}>
             <div style={{
-              width:100, height:5,
-              background:'rgba(255,255,255,0.15)',
-              borderRadius:10,
+              width: 100, height: 5,
+              background: 'rgba(255,255,255,0.15)',
+              borderRadius: 10,
             }}/>
           </div>
 
           <div className="tablet-screen">
-            <div style={{ position:'absolute', inset:0 }}>
+            <div style={{ position: 'absolute', inset: 0 }}>
               {renderScreen()}
             </div>
           </div>
         </div>
 
         <div style={{
-          textAlign:'center', marginTop: 18,
-          fontFamily: MONO, fontSize: 10, letterSpacing:'0.04em',
-          color: 'rgba(0,0,0,0.3)',
+          textAlign: 'center', marginTop: 18,
+          fontFamily: MONO, fontSize: 10, letterSpacing: '0.04em',
+          color: 'rgba(255,255,255,0.25)',
         }}>
-          sam · breadcrumbs · interactive tablet prototype
+          SAM · Breadcrumbs · Jacob Lawrence — The Studio
         </div>
       </div>
 
-      <window.TweaksPanel>
-        <window.TweakSection label="content" />
-        <window.TweakText
-          label="artist label"
-          value={tweaks.artistLabel}
-          onChange={v => setTweak('artistLabel', v)}
-        />
-        <window.TweakSection label="screens" />
+      <window.TweaksPanel title="Jump to screen">
+        <window.TweakSection label="navigation" />
         <window.TweakSelect
           label="jump to screen"
-          options={['idle','unlock','mission 1','mission 2','complete']}
-          value={['idle','unlock','mission 1','mission 2','complete'][['idle','unlock','mission1','mission2','completion'].indexOf(screen)] || 'idle'}
-          onChange={v => {
-            const map = {'idle':'idle','unlock':'unlock','mission 1':'mission1','mission 2':'mission2','complete':'completion'};
-            if (v !== 'idle' && !teamName) setTeamName(TEAM_NAMES[0]);
-            setScreen(map[v]);
-          }}
+          options={screenOptions}
+          value={screenOptions.find(o => o === currentLabel) || 'idle'}
+          onChange={handleJump}
         />
       </window.TweaksPanel>
     </>
